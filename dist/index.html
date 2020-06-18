@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"/><meta name="apple-mobile-web-app-capable" content="yes"/><title>Flussonic WebRTC example</title><style>.app {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100vh - 16px);
+      }
+      .container {
+        margin-bottom: 32px;
+      }
+      .video-container {
+        display: flex;
+      }
+      .controls {
+      }
+      .config {
+      }
+      #player {
+        width: 640px; height: 480px; border-radius: 1px
+      }
+      .button {
+        height: 20px;
+        width: 96px;
+      }</style></head><body><div class="app"><div class="video-container"><video id="player" controls muted autoplay playsinline></video><pre id="debug"></pre></div><div class="container"><div class="config" id="config"><span id="hostContainer"><label for="host">Host:</label><input name="host" id="host" value=""/> </span><span id="nameContainer"><label for="name">Stream:</label><input name="name" id="name" value=""/></span></div><div class="controls" id="controls"><select id="quality"><option value="4:3:240">4:3 320x240</option><option value="4:3:360">4:3 480x360</option><option value="4:3:480">4:3 640x480</option><option value="16:9:360" selected="selected">16:9 640x360</option><option value="16:9:540">16:9 960x540</option><option value="16:9:720">16:9 1280x720 HD</option></select> <button id="publish" class="button">Publish</button> <button id="play" class="button">Play</button> <button id="stop" class="button">Stop all</button></div><div class="errorMessageContainer" id="errorMessageContainer"></div></div><script src="index.js"></script></div></body></html>
