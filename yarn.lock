@@ -749,6 +749,13 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
+"@babel/runtime@^7.10.3":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
+  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.8.4":
   version "7.10.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
@@ -789,11 +796,12 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@flussonic/flussonic-webrtc-player@^20.4.1":
-  version "20.4.1"
-  resolved "https://registry.yarnpkg.com/@flussonic/flussonic-webrtc-player/-/flussonic-webrtc-player-20.4.1.tgz#d154402893dc9c81aa771be2777cb526c492da96"
-  integrity sha512-tCsi5QXfF6HnuL8XeppMNs7Q2qi6IZPCsoAzI0ADGn7KXqYMHtcDtiMqexHrN2A1AJxgOwhl/DRyuL6Qf2GFYg==
+"@flussonic/flussonic-webrtc-player@^20.9.3":
+  version "20.9.3"
+  resolved "https://registry.yarnpkg.com/@flussonic/flussonic-webrtc-player/-/flussonic-webrtc-player-20.9.3.tgz#86c400594f49081eb654cc0a4a6a07dcc6fe4549"
+  integrity sha512-l0yVBV4s6qC2ycUIhV8YqCK7TCTF0f+9PoeEviruFXivVYkeUusJQUeO/op9t5jaEFPlxq+igFr/Sut9VT6v4A==
   dependencies:
+    "@babel/runtime" "^7.10.3"
     bowser "^2.0.0-beta.3"
     core-js "^2.6.0"
     nanoevents "^1.0.5"

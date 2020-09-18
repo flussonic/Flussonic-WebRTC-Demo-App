@@ -23,7 +23,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@flussonic/flussonic-webrtc-player": "^20.4.1",
+    "@flussonic/flussonic-webrtc-player": "^20.9.3",
     "query-string": "^6.13.1"
   }
 }

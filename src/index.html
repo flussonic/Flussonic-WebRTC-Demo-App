@@ -6,9 +6,9 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       .app {
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-between; */
         height: calc(100vh - 16px);
       }
       .container {
@@ -18,6 +18,7 @@
         display: flex;
       }
       .controls {
+        margin: 16px;
       }
       .config {
       }
@@ -28,10 +29,51 @@
         height: 20px;
         width: 96px;
       }
+
+      .stats-box {
+        max-width: 100%;
+        height: 300px;
+        max-height: 300px;
+        overflow: scroll;
+        display: none;
+      }
+
+      .preview {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+      }
+
+      .preview-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 8px;
+        background: black;
+        color: white;
+        z-index: 10;
+      }
+
+      #preview-video {
+        max-width: 320px;
+        max-height: 240px;
+      }
     </style>
   </head>
   <body>
     <div class="app">
+      <div class="preview">
+        <div class="preview-text">preview</div>
+        <video
+          id="preview-video"
+          controls
+          muted
+          autoplay
+          playsinline
+        >
+        </video>
+      </div> 
       <div class="video-container">
         <video
                 id="player"
@@ -55,18 +97,28 @@
       </div>
       <div class="controls" id="controls">
         <select id="quality">
+          <option value="" selected>default</option>
           <option value="4:3:240">4:3 320x240</option>
           <option value="4:3:360">4:3 480x360</option>
           <option value="4:3:480">4:3 640x480</option>
-          <option value="16:9:360" selected>16:9 640x360</option>
+          <option value="16:9:360">16:9 640x360</option>
           <option value="16:9:540">16:9 960x540</option>
+          <option value="16:9:576">16:9 1024x576</option>
           <option value="16:9:720">16:9 1280x720 HD</option>
+          <option value="16:9:1080">16:9 1920x1080 HD</option>
         </select>
         <button id="publish" class="button">Publish</button>
         <button id="play" class="button">Play</button>
         <button id="stop" class="button">Stop all</button>
+        <button id="mute" class="button" disabled>Mute</button>
+        <p>
+          Publish video ? <input type='checkbox' checked id='videoPublish'>
+        </p>
+        <button id="error" class="button" disabled>Send Log</button>
+        <button id="errorWS" class="button" disabled>Send WSLog</button>
       </div>
       <div class="errorMessageContainer" id="errorMessageContainer"></div>
+      <div class="stats-box" id="stats-box"></div>
     </div>
   </body>
 </html>

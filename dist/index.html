@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"/><meta name="apple-mobile-web-app-capable" content="yes"/><title>Flussonic WebRTC example</title><style>.app {
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-between; */
         height: calc(100vh - 16px);
       }
       .container {
@@ -11,6 +11,7 @@
         display: flex;
       }
       .controls {
+        margin: 16px;
       }
       .config {
       }
@@ -20,4 +21,34 @@
       .button {
         height: 20px;
         width: 96px;
-      }</style></head><body><div class="app"><div class="video-container"><video id="player" controls muted autoplay playsinline></video><pre id="debug"></pre></div><div class="container"><div class="config" id="config"><span id="hostContainer"><label for="host">Host:</label><input name="host" id="host" value=""/> </span><span id="nameContainer"><label for="name">Stream:</label><input name="name" id="name" value=""/></span></div><div class="controls" id="controls"><select id="quality"><option value="4:3:240">4:3 320x240</option><option value="4:3:360">4:3 480x360</option><option value="4:3:480">4:3 640x480</option><option value="16:9:360" selected="selected">16:9 640x360</option><option value="16:9:540">16:9 960x540</option><option value="16:9:720">16:9 1280x720 HD</option></select> <button id="publish" class="button">Publish</button> <button id="play" class="button">Play</button> <button id="stop" class="button">Stop all</button></div><div class="errorMessageContainer" id="errorMessageContainer"></div></div><script src="index.js"></script></div></body></html>
+      }
+
+      .stats-box {
+        max-width: 100%;
+        height: 300px;
+        max-height: 300px;
+        overflow: scroll;
+        display: none;
+      }
+
+      .preview {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+      }
+
+      .preview-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 8px;
+        background: black;
+        color: white;
+        z-index: 10;
+      }
+
+      #preview-video {
+        max-width: 320px;
+        max-height: 240px;
+      }</style></head><body><div class="app"><div class="preview"><div class="preview-text">preview</div><video id="preview-video" controls muted autoplay playsinline></video></div><div class="video-container"><video id="player" controls muted autoplay playsinline></video><pre id="debug"></pre></div><div class="container"><div class="config" id="config"><span id="hostContainer"><label for="host">Host:</label><input name="host" id="host" value=""/> </span><span id="nameContainer"><label for="name">Stream:</label><input name="name" id="name" value=""/></span></div><div class="controls" id="controls"><select id="quality"><option value="" selected="selected">default</option><option value="4:3:240">4:3 320x240</option><option value="4:3:360">4:3 480x360</option><option value="4:3:480">4:3 640x480</option><option value="16:9:360">16:9 640x360</option><option value="16:9:540">16:9 960x540</option><option value="16:9:576">16:9 1024x576</option><option value="16:9:720">16:9 1280x720 HD</option><option value="16:9:1080">16:9 1920x1080 HD</option></select> <button id="publish" class="button">Publish</button> <button id="play" class="button">Play</button> <button id="stop" class="button">Stop all</button> <button id="mute" class="button" disabled="disabled">Mute</button><p>Publish video ? <input type="checkbox" checked="checked" id="videoPublish"></p><button id="error" class="button" disabled="disabled">Send Log</button> <button id="errorWS" class="button" disabled="disabled">Send WSLog</button></div><div class="errorMessageContainer" id="errorMessageContainer"></div><div class="stats-box" id="stats-box"></div></div><script src="index.js"></script></div></body></html>

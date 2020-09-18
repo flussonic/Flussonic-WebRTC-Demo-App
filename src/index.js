@@ -19,7 +19,11 @@ const getPlayerElement = () => document.getElementById("player");
 const getPlayElement = () => document.getElementById("play");
 const getPublishElement = () => document.getElementById("publish");
 const getStopElement = () => document.getElementById("stop");
-const getQualityElement = () => document.getElementById("stop");
+const getQualityElement = () => document.getElementById("quality");
+const getMuteElement = () => document.getElementById("mute");
+const getVideoPublishElement = () => document.getElementById("videoPublish");
+const getSendError = () => document.getElementById("error");
+const getSendErrorWS = () => document.getElementById("errorWS");
 
 const getStreamUrl = (
   hostElement = getHostElement(),
@@ -28,17 +32,33 @@ const getStreamUrl = (
   `${query.host || (hostElement && hostElement.value)}/${
     query.name || (nameElement && nameElement.value)
   }`;
-const getPublisherOpts = () => {
-  const [, , height] = document.getElementById("quality").value.split(/:/);
+
+const getPublisherOpts = (height = null) => {
+  let video = {
+    width: { min: 320, ideal: 1280, max: 1920 },
+    height: { min: 240, ideal: 720, max: 1080 },
+  };
+  if (height && (typeof height === "string" || typeof height === "number")) {
+    video = {
+      height: { exact: height },
+    };
+  }
+
+  const videoPublishElement = getVideoPublishElement();
+  if (videoPublishElement.checked === false) {
+    video = false;
+  }
+
   return {
     preview: document.getElementById("preview"),
     constraints: {
-      // video: {
-      //   height: { exact: height }
-      // },
-      video: true,
+      video,
       audio: true,
     },
+    password: query.password,
+    trackStats: false,
+    // statsContainer: document.querySelector('.stats-box'),
+    videoPreview: document.getElementById("preview-video"),
   };
 };
 
@@ -79,6 +99,9 @@ const stop = () => {
 
   getPublishElement().innerText = "Publish";
   getPlayElement().innerText = "Play";
+  getSendError().disabled = true;
+  getSendErrorWS().disabled = true;
+  getMuteElement().disabled = true;
 };
 
 const play = () => {
@@ -87,14 +110,17 @@ const play = () => {
   wrtcPlayer.play();
 };
 
-const publish = () => {
+const publish = (height = null) => {
   if (publisher) publisher.stop();
 
-  publisher = new Publisher(getStreamUrl(), getPublisherOpts(), true);
+  publisher = new Publisher(getStreamUrl(), getPublisherOpts(height), true);
   publisher.on(PUBLISHER_EVENTS.STREAMING, () => {
     getPublishElement().innerText = "Publishing...";
+    getSendError().disabled = false;
+    getSendErrorWS().disabled = false;
   });
   publisher.start();
+  getMuteElement().disabled = false;
 };
 
 const setDefaultValues = () => {
@@ -111,12 +137,36 @@ const setDefaultValues = () => {
   }
 };
 
+const sendError = () => {
+  if (publisher) {
+    publisher.sendErrorLog(true);
+  }
+};
+
+const sendErrorWS = () => {
+  if (publisher) {
+    publisher.sendErrorLog();
+  }
+};
+
 const setEventListeners = () => {
   // Set event listeners
   getPublishElement().addEventListener("click", publish);
   getPlayElement().addEventListener("click", play);
   getStopElement().addEventListener("click", stop);
-  getQualityElement().onchange = publish;
+  getQualityElement().onchange = (e) => {
+    const [, , height] = e.currentTarget.value.split(/:/);
+    publish(height);
+  };
+  getMuteElement().addEventListener("click", mute);
+  getSendError().addEventListener("click", sendError);
+  getSendErrorWS().addEventListener("click", sendErrorWS);
+};
+
+const mute = () => {
+  getMuteElement().innerText =
+    getMuteElement().innerText === "Mute" ? "Unmute" : "Mute";
+  publisher.mute();
 };
 
 const main = () => {
