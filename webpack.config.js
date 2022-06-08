@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: "source-map",
@@ -12,7 +13,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Flussonic WebRTC example",
       template: 'src/index.html'
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/fonts', to: '' },
+        { from: 'src/styles', to: '' },
+      ],
+    }),
   ],
 
   module: {

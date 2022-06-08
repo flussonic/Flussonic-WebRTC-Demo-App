@@ -1,0 +1,143 @@
+.app {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  height: calc(100vh - 16px);
+}
+
+.container {
+  margin-bottom: 32px;
+}
+
+.video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.controls {
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.playControls p {
+  font-size: 12px;
+}
+
+.config {
+  text-align: center;
+}
+
+#player {
+  width: 640px;
+  height: 480px;
+  border-radius: 1px
+}
+
+.button {
+  padding: 12px;
+  margin: 4px 12px;
+  background-color: #1565c0;
+  color: white;
+  font-weight: 300;
+  font-size: 36px;
+  max-width: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 0;
+}
+
+.button.active {
+  background-color: #fb8c00;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #2196f3;
+}
+
+.button:disabled {
+  cursor: default;
+  background-color: gray;
+}
+
+.stats-box {
+  max-width: 100%;
+  height: 300px;
+  max-height: 300px;
+  overflow: scroll;
+  display: none;
+}
+
+.preview {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.preview-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 8px;
+  background: black;
+  color: white;
+  z-index: 10;
+}
+
+#preview-video {
+  width: 320px;
+  height: auto;
+  max-width: 320px;
+  max-height: 240px;
+}
+
+select {
+  padding: 2px 4px;
+}
+
+#autoQ {
+  margin-right: 16px;
+  align-items: center;
+  display: none;
+}
+
+#autoQ #autoQuality {
+  margin-right: 4px;
+}
+
+#abrInfo {
+  position: absolute;
+  color: chartreuse;
+  font-size: 14px;
+  z-index: 1000;
+  bottom: 16px;
+  background: #0000006b;
+  padding: 8px 16px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: ease-in-out 500ms;
+}
+
+#quality option:disabled {
+  display: none;
+}
+
+#quality option.disabled {
+  display: none;
+}
