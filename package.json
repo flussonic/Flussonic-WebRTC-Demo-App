@@ -17,14 +17,14 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
-    "html-webpack-plugin": "^4.3.0",
     "copy-webpack-plugin": "^6.3.2",
+    "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@flussonic/flussonic-webrtc-player": "^22.6.4",
+    "@flussonic/flussonic-webrtc-player": "^23.5.1-8-g2709036",
     "query-string": "^6.13.1"
   }
 }
