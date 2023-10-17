@@ -187,14 +187,13 @@ const onMediaInfo = (tracks, abr) => {
         audioQElement.disabled = false;
       }
       if (content === "audio") {
-        const { track_id, params } = track;
-        const { sample_rate } = params;
+        const { track_id, sample_rate } = track;
         const option = document.createElement("option");
         option.value = track_id;
         option.text = `${sample_rate} kbps`;
         audioQElement.add(option, null);
       } else if (content === "video") {
-        const { track_id, params } = track;
+        const { track_id } = track;
         const { width = "", height = "" } = params;
         const option = document.createElement("option");
         option.value = track_id;
